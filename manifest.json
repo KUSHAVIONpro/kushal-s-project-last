@@ -1,0 +1,10 @@
+{
+"name": "KUSHAVION AI",
+"short_name": "KUSHAVION",
+"description": "Personal AI Assistant for MP Board Class 10",
+"start_url": "/",
+"display": "standalone",
+"theme_color": "#101820",
+"background_color": "#101820",
+"icons": []
+}
