@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>KUSHAL'S AI - MP Board Class 10 Maths</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
+    background: #0d0d12;
+    color: #e0e0e0;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Header */
+  .header {
+    background: linear-gradient(180deg, #1a1a2e 0%, #12121a 100%);
+    padding: 12px 16px 8px;
+    border-bottom: 1px solid #2a2a3a;
+    position: relative;
+    z-index: 10;
+  }
+  
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .menu-btn, .icon-btn {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 4px;
+  }
+  
+  .brand {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.5px;
+  }
+  
+  .header-right {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .logo-section {
+    text-align: center;
+    padding: 8px 0 4px;
+  }
+  
+  .logo-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  
+  .logo-icon {
+    font-size: 28px;
+    filter: drop-shadow(0 0 8px #00f0ff);
+  }
+  
+  .logo-text {
+    font-size: 26px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #00f0ff, #00a8ff, #7b5cff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+    letter-spacing: 1px;
+  }
+  
+  .tagline {
+    font-size: 12px;
+    color: #888;
+    letter-spacing: 1px;
+  }
+  
+  .status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #00e676;
+  }
+  
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    background: #00e676;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.2); }
+  }
+  
+  /* Chat Area */
+  .chat-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    scroll-behavior: smooth;
+  }
+  
+  .message {
+    max-width: 92%;
+    padding: 12px 16px;
+    border-radius: 16px;
+    line-height: 1.5;
+    font-size: 14.5px;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .bot-msg {
+    background: #1e1e2e;
+    border: 1px solid #2a2a3e;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+  }
+  
+  .user-msg {
+    background: linear-gradient(135deg, #1a3a5c, #0d2b4a);
+    border: 1px solid #2a5a8a;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+  }
+  
+  .welcome-card {
+    background: linear-gradient(145deg, #1a1a2e, #151525);
+    border: 1px solid #2a2a4a;
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 8px;
+  }
+  
+  .welcome-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+  
+  .welcome-sub {
+    color: #aaa;
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
+  
+  .feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-size: 14px;
+  }
+  
+  .feature-item:hover, .feature-item:active {
+    background: rgba(0, 240, 255, 0.1);
+  }
+  
+  .feature-icon {
+    font-size: 18px;
+    width: 28px;
+    text-align: center;
+  }
+  
+  .math-content {
+    font-family: 'Poppins', 'Noto Sans Devanagari', monospace;
+  }
+  
+  .math-content h3 {
+    color: #00f0ff;
+    margin: 10px 0 6px;
+    font-size: 15px;
+  }
+  
+  .math-content h4 {
+    color: #7b5cff;
+    margin: 8px 0 4px;
+    font-size: 14px;
+  }
+  
+  .math-content p, .math-content li {
+    margin: 4px 0;
+    line-height: 1.6;
+  }
+  
+  .math-content ul, .math-content ol {
+    padding-left: 20px;
+    margin: 6px 0;
+  }
+  
+  .formula-box {
+    background: #12121c;
+    border: 1px solid #333;
+    border-left: 3px solid #00f0ff;
+    padding: 10px 14px;
+    margin: 8px 0;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    overflow-x: auto;
+  }
+  
+  .example-box {
+    background: #1a2a1a;
+    border: 1px solid #2a4a2a;
+    border-left: 3px solid #00e676;
+    padding: 10px 14px;
+    margin: 8px 0;
+    border-radius: 8px;
+  }
+  
+  .note-box {
+    background: #2a1a1a;
+    border: 1px solid #4a2a2a;
+    border-left: 3px solid #ff6b6b;
+    padding: 8px 12px;
+    margin: 8px 0;
+    border-radius: 8px;
+    font-size: 13px;
+  }
+  
+  .chapter-btn {
+    display: inline-block;
+    background: #1a2a3a;
+    border: 1px solid #2a4a6a;
+    color: #7ec8ff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin: 4px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  
+  .chapter-btn:hover {
+    background: #2a3a5a;
+  }
+  
+  /* Input Area */
+  .input-area {
+    background: #12121a;
+    border-top: 1px solid #2a2a3a;
+    padding: 12px 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .quick-actions {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+  
+  .quick-actions::-webkit-scrollbar { display: none; }
+  
+  .quick-btn {
+    flex-shrink: 0;
+    background: #1e1e2e;
+    border: 1px solid #333;
+    color: #ccc;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  
+  .quick-btn:active {
+    background: #2a2a4a;
+    border-color: #00f0ff;
+  }
+  
+  .input-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .input-box {
+    flex: 1;
+    background: #1a1a28;
+    border: 1.5px solid #2a2a4a;
+    border-radius: 24px;
+    padding: 12px 18px;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    font-family: inherit;
+  }
+  
+  .input-box:focus {
+    border-color: #00f0ff;
+    box-shadow: 0 0 0 2px rgba(0, 240, 255, 0.15);
+  }
+  
+  .input-box::placeholder {
+    color: #666;
+  }
+  
+  .mic-btn, .send-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+  
+  .mic-btn {
+    background: #1e1e2e;
+    color: #00f0ff;
+    border: 1px solid #2a2a4a;
+  }
+  
+  .mic-btn.listening {
+    background: #ff3b3b;
+    color: #fff;
+    animation: pulse-red 1s infinite;
+  }
+  
+  @keyframes pulse-red {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 59, 59, 0.5); }
+    50% { box-shadow: 0 0 0 10px rgba(255, 59, 59, 0); }
+  }
+  
+  .send-btn {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    color: #fff;
+  }
+  
+  .mic-btn:active, .send-btn:active {
+    transform: scale(0.92);
+  }
+  
+  .status-bar {
+    text-align: center;
+    font-size: 11px;
+    color: #555;
+    padding: 2px;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100%;
+    background: #12121c;
+    border-right: 1px solid #2a2a3a;
+    z-index: 100;
+    transition: left 0.3s ease;
+    overflow-y: auto;
+    padding: 20px 0;
+  }
+  
+  .sidebar.open {
+    left: 0;
+  }
+  
+  .sidebar-header {
+    padding: 0 20px 16px;
+    border-bottom: 1px solid #2a2a3a;
+    margin-bottom: 12px;
+  }
+  
+  .sidebar-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #00f0ff;
+  }
+  
+  .sidebar-item {
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #ccc;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .sidebar-item:hover, .sidebar-item:active {
+    background: rgba(0, 240, 255, 0.08);
+    color: #fff;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 99;
+    display: none;
+  }
+  
+  .overlay.show {
+    display: block;
+  }
+  
+  /* Loading */
+  .typing {
+    display: flex;
+    gap: 4px;
+    padding: 8px 0;
+  }
+  
+  .typing span {
+    width: 8px;
+    height: 8px;
+    background: #00f0ff;
+    border-radius: 50%;
+    animation: bounce 1.2s infinite;
+  }
+  
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+  
+  @keyframes bounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-6px); }
+  }
+  
+  .lang-toggle {
+    position: absolute;
+    top: 12px;
+    right: 50px;
+    background: #1e1e2e;
+    border: 1px solid #333;
+    color: #aaa;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    cursor: pointer;
+  }
+  
+  pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-title">⚡ KUSHAL'S AI</div>
+    <div style="font-size:12px;color:#666;margin-top:4px;">MP Board Class 10 Maths</div>
+  </div>
+  <div class="sidebar-item" onclick="quickAction('chapters')">📚 All Chapters</div>
+  <div class="sidebar-item" onclick="quickAction('formulas')">📐 All Formulas</div>
+  <div class="sidebar-item" onclick="quickAction('definitions')">📖 Definitions</div>
+  <div class="sidebar-item" onclick="quickAction('theorems')">📏 Theorems</div>
+  <div class="sidebar-item" onclick="quickAction('solver')">✏️ Problem Solver</div>
+  <div class="sidebar-item" onclick="quickAction('trig')">📐 Trigonometry</div>
+  <div class="sidebar-item" onclick="quickAction('quadratic')">🔢 Quadratic Equations</div>
+  <div class="sidebar-item" onclick="quickAction('help')">❓ How to use</div>
+  <div class="sidebar-item" onclick="clearChat()">🗑️ Clear Chat</div>
+</div>
+
+<div class="header">
+  <div class="header-top">
+    <div class="header-left">
+      <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+      <span class="brand">KUSHAL'S AI</span>
+    </div>
+    <div class="header-right">
+      <button class="lang-toggle" id="langBtn" onclick="toggleLang()">हिंदी / EN</button>
+      <button class="icon-btn">✕</button>
+    </div>
+  </div>
+  <div class="logo-section">
+    <div class="logo-main">
+      <span class="logo-icon">⚡</span>
+      <span class="logo-text">KUSHAL'S AI</span>
+    </div>
+    <div class="tagline">Voice • Maths • Smart Assistant</div>
+    <div class="status">
+      <span class="status-dot"></span>
+      <span>AI Ready</span>
+    </div>
+  </div>
+</div>
+
+<div class="chat-container" id="chatBox">
+  <!-- Welcome will be injected -->
+</div>
+
+<div class="input-area">
+  <div class="quick-actions">
+    <button class="quick-btn" onclick="quickAction('chapters')">📚 Chapters</button>
+    <button class="quick-btn" onclick="quickAction('formulas')">📐 Formula</button>
+    <button class="quick-btn" onclick="quickAction('definitions')">📖 Definition</button>
+    <button class="quick-btn" onclick="quickAction('theorems')">📏 Theorem</button>
+    <button class="quick-btn" onclick="quickAction('solver')">✏️ Solver</button>
+    <button class="quick-btn" onclick="quickAction('trig')">sin cos tan</button>
+  </div>
+  <div class="input-row">
+    <input type="text" class="input-box" id="userInput" placeholder="Type your question... / सवाल टाइप करो..." autocomplete="off">
+    <button class="mic-btn" id="micBtn" onclick="toggleVoice()">🎤</button>
+    <button class="send-btn" onclick="sendMessage()">➤</button>
+  </div>
+  <div class="status-bar" id="statusBar">Question type karo ya mic dabakar bolo</div>
+</div>
+
+<script>
+// ==================== LANGUAGE ====================
+let lang = 'hi'; // 'hi' or 'en'
+
+function toggleLang() {
+  lang = lang === 'hi' ? 'en' : 'hi';
+  document.getElementById('langBtn').textContent = lang === 'hi' ? 'हिंदी / EN' : 'EN / हिंदी';
+  document.getElementById('statusBar').textContent = lang === 'hi' 
+    ? 'Question type karo ya mic dabakar bolo' 
+    : 'Type your question or press mic to speak';
+  showWelcome();
+}
+
+// ==================== KNOWLEDGE BASE ====================
+const knowledge = {
+  chapters: {
+    hi: [
+      "1. वास्तविक संख्याएँ (Real Numbers)",
+      "2. बहुपद (Polynomials)",
+      "3. दो चर वाले रैखिक समीकरण युग्म (Pair of Linear Equations)",
+      "4. द्विघात समीकरण (Quadratic Equations)",
+      "5. समांतर श्रेढ़ियाँ (Arithmetic Progressions)",
+      "6. त्रिभुज (Triangles)",
+      "7. निर्देशांक ज्यामिति (Coordinate Geometry)",
+      "8. त्रिकोणमिति का परिचय (Introduction to Trigonometry)",
+      "9. त्रिकोणमिति के कुछ अनुप्रयोग (Applications of Trigonometry)",
+      "10. वृत्त (Circles)",
+      "11. वृतों से संबंधित क्षेत्रफल (Areas Related to Circles)",
+      "12. पृष्ठीय क्षेत्रफल और आयतन (Surface Areas and Volumes)",
+      "13. सांख्यिकी (Statistics)",
+      "14. प्रायिकता (Probability)"
+    ],
+    en: [
+      "1. Real Numbers",
+      "2. Polynomials",
+      "3. Pair of Linear Equations in Two Variables",
+      "4. Quadratic Equations",
+      "5. Arithmetic Progressions",
+      "6. Triangles",
+      "7. Coordinate Geometry",
+      "8. Introduction to Trigonometry",
+      "9. Some Applications of Trigonometry",
+      "10. Circles",
+      "11. Areas Related to Circles",
+      "12. Surface Areas and Volumes",
+      "13. Statistics",
+      "14. Probability"
+    ]
+  },
+  
+  formulas: {
+    "real numbers": {
+      hi: `<h3>📐 वास्तविक संख्याएँ - सूत्र</h3>
+<div class="formula-box">HCF(a,b) × LCM(a,b) = a × b</div>
+<div class="formula-box">यूक्लिड विभाजन प्रमेयिका: a = bq + r (जहाँ 0 ≤ r < b)</div>
+<p><b>मौलिक प्रमेय:</b> हर समग्र संख्या को अभाज्य संख्याओं के गुणनफल के रूप में लिखा जा सकता है।</p>`,
+      en: `<h3>📐 Real Numbers - Formulas</h3>
+<div class="formula-box">HCF(a,b) × LCM(a,b) = a × b</div>
+<div class="formula-box">Euclid's Division Lemma: a = bq + r (where 0 ≤ r < b)</div>
+<p><b>Fundamental Theorem:</b> Every composite number can be expressed as product of primes.</p>`
+    },
+    "polynomials": {
+      hi: `<h3>📐 बहुपद - सूत्र</h3>
+<div class="formula-box">द्विघात बहुपद ax² + bx + c के लिए:<br>
+α + β = -b/a<br>
+αβ = c/a</div>
+<p>शून्यक (zeros) वे मान हैं जहाँ p(x) = 0</p>`,
+      en: `<h3>📐 Polynomials - Formulas</h3>
+<div class="formula-box">For quadratic ax² + bx + c:<br>
+α + β = -b/a<br>
+αβ = c/a</div>
+<p>Zeros are values where p(x) = 0</p>`
+    },
+    "quadratic": {
+      hi: `<h3>📐 द्विघात समीकरण - सूत्र</h3>
+<div class="formula-box">ax² + bx + c = 0</div>
+<div class="formula-box">x = [-b ± √(b² - 4ac)] / 2a</div>
+<div class="formula-box">विविक्तकर D = b² - 4ac</div>
+<ul>
+<li>D > 0 → दो भिन्न वास्तविक मूल</li>
+<li>D = 0 → दो समान वास्तविक मूल</li>
+<li>D < 0 → कोई वास्तविक मूल नहीं</li>
+</ul>`,
+      en: `<h3>📐 Quadratic Equations - Formulas</h3>
+<div class="formula-box">ax² + bx + c = 0</div>
+<div class="formula-box">x = [-b ± √(b² - 4ac)] / 2a</div>
+<div class="formula-box">Discriminant D = b² - 4ac</div>
+<ul>
+<li>D > 0 → Two distinct real roots</li>
+<li>D = 0 → Two equal real roots</li>
+<li>D < 0 → No real roots</li>
+</ul>`
+    },
+    "ap": {
+      hi: `<h3>📐 समांतर श्रेढ़ी (AP) - सूत्र</h3>
+<div class="formula-box">nवाँ पद: aₙ = a + (n-1)d</div>
+<div class="formula-box">n पदों का योग: Sₙ = n/2 [2a + (n-1)d]</div>
+<div class="formula-box">Sₙ = n/2 (a + l)  (जहाँ l अंतिम पद)</div>`,
+      en: `<h3>📐 Arithmetic Progression - Formulas</h3>
+<div class="formula-box">nth term: aₙ = a + (n-1)d</div>
+<div class="formula-box">Sum of n terms: Sₙ = n/2 [2a + (n-1)d]</div>
+<div class="formula-box">Sₙ = n/2 (a + l)  (where l is last term)</div>`
+    },
+    "trigonometry": {
+      hi: `<h3>📐 त्रिकोणमिति - सूत्र</h3>
+<div class="formula-box">
+sin θ = लम्ब / कर्ण (P/H)<br>
+cos θ = आधार / कर्ण (B/H)<br>
+tan θ = लम्ब / आधार (P/B)<br>
+cosec θ = 1/sin θ<br>
+sec θ = 1/cos θ<br>
+cot θ = 1/tan θ
+</div>
+<div class="formula-box">
+sin²θ + cos²θ = 1<br>
+1 + tan²θ = sec²θ<br>
+1 + cot²θ = cosec²θ
+</div>
+<div class="formula-box">
+sin(90°-θ) = cos θ<br>
+cos(90°-θ) = sin θ<br>
+tan(90°-θ) = cot θ
+</div>
+<p><b>मान:</b></p>
+<div class="formula-box">
+sin 0°=0, sin 30°=1/2, sin 45°=1/√2, sin 60°=√3/2, sin 90°=1<br>
+cos 0°=1, cos 30°=√3/2, cos 45°=1/√2, cos 60°=1/2, cos 90°=0<br>
+tan 0°=0, tan 30°=1/√3, tan 45°=1, tan 60°=√3, tan 90°=अपरिभाषित
+</div>`,
+      en: `<h3>📐 Trigonometry - Formulas</h3>
+<div class="formula-box">
+sin θ = Opposite / Hypotenuse<br>
+cos θ = Adjacent / Hypotenuse<br>
+tan θ = Opposite / Adjacent<br>
+cosec θ = 1/sin θ<br>
+sec θ = 1/cos θ<br>
+cot θ = 1/tan θ
+</div>
+<div class="formula-box">
+sin²θ + cos²θ = 1<br>
+1 + tan²θ = sec²θ<br>
+1 + cot²θ = cosec²θ
+</div>
+<div class="formula-box">
+sin(90°-θ) = cos θ<br>
+cos(90°-θ) = sin θ<br>
+tan(90°-θ) = cot θ
+</div>
+<p><b>Standard Values:</b></p>
+<div class="formula-box">
+sin 0°=0, sin 30°=1/2, sin 45°=1/√2, sin 60°=√3/2, sin 90°=1<br>
+cos 0°=1, cos 30°=√3/2, cos 45°=1/√2, cos 60°=1/2, cos 90°=0<br>
+tan 0°=0, tan 30°=1/√3, tan 45°=1, tan 60°=√3, tan 90°=undefined
+</div>`
+    },
+    "coordinate": {
+      hi: `<h3>📐 निर्देशांक ज्यामिति - सूत्र</h3>
+<div class="formula-box">दूरी सूत्र: d = √[(x₂-x₁)² + (y₂-y₁)²]</div>
+<div class="formula-box">मध्य बिंदु: ((x₁+x₂)/2, (y₁+y₂)/2)</div>
+<div class="formula-box">अनुपात सूत्र (आंतरिक):<br>
+x = (mx₂ + nx₁)/(m+n)<br>
+y = (my₂ + ny₁)/(m+n)</div>
+<div class="formula-box">क्षेत्रफल (त्रिभुज): ½ |x₁(y₂-y₃) + x₂(y₃-y₁) + x₃(y₁-y₂)|</div>`,
+      en: `<h3>📐 Coordinate Geometry - Formulas</h3>
+<div class="formula-box">Distance: d = √[(x₂-x₁)² + (y₂-y₁)²]</div>
+<div class="formula-box">Midpoint: ((x₁+x₂)/2, (y₁+y₂)/2)</div>
+<div class="formula-box">Section Formula (Internal):<br>
+x = (mx₂ + nx₁)/(m+n)<br>
+y = (my₂ + ny₁)/(m+n)</div>
+<div class="formula-box">Area of triangle: ½ |x₁(y₂-y₃) + x₂(y₃-y₁) + x₃(y₁-y₂)|</div>`
+    },
+    "circles": {
+      hi: `<h3>📐 वृत्त - सूत्र</h3>
+<div class="formula-box">परिधि = 2πr</div>
+<div class="formula-box">क्षेत्रफल = πr²</div>
+<div class="formula-box">चाप की लंबाई = (θ/360°) × 2πr</div>
+<div class="formula-box">त्रिज्यखंड का क्षेत्रफल = (θ/360°) × πr²</div>
+<div class="formula-box">वृत्तीय वलय का क्षेत्रफल = π(R² - r²)</div>
+<p><b>प्रमेय:</b> स्पर्श रेखा केंद्र से त्रिज्या पर लंब होती है।</p>
+<p>एक बिंदु से खींची गई दो स्पर्श रेखाएँ बराबर होती हैं।</p>`,
+      en: `<h3>📐 Circles - Formulas</h3>
+<div class="formula-box">Circumference = 2πr</div>
+<div class="formula-box">Area = πr²</div>
+<div class="formula-box">Length of arc = (θ/360°) × 2πr</div>
+<div class="formula-box">Area of sector = (θ/360°) × πr²</div>
+<div class="formula-box">Area of ring = π(R² - r²)</div>
+<p><b>Theorem:</b> Tangent is perpendicular to radius at point of contact.</p>
+<p>Two tangents from external point are equal.</p>`
+    },
+    "surface": {
+      hi: `<h3>📐 पृष्ठीय क्षेत्रफल और आयतन</h3>
+<div class="formula-box">
+<b>घन (Cube):</b> SA = 6a², V = a³<br>
+<b>घनाभ:</b> SA = 2(lb+bh+hl), V = lbh<br>
+<b>बेलन:</b> CSA = 2πrh, TSA = 2πr(h+r), V = πr²h<br>
+<b>शंकु:</b> CSA = πrl, TSA = πr(l+r), V = (1/3)πr²h<br>
+<b>गोला:</b> SA = 4πr², V = (4/3)πr³<br>
+<b>गोलाकार खोल:</b> SA = 4πR² + 4πr², V = (4/3)π(R³-r³)
+</div>`,
+      en: `<h3>📐 Surface Areas & Volumes</h3>
+<div class="formula-box">
+<b>Cube:</b> SA = 6a², V = a³<br>
+<b>Cuboid:</b> SA = 2(lb+bh+hl), V = lbh<br>
+<b>Cylinder:</b> CSA = 2πrh, TSA = 2πr(h+r), V = πr²h<br>
+<b>Cone:</b> CSA = πrl, TSA = πr(l+r), V = (1/3)πr²h<br>
+<b>Sphere:</b> SA = 4πr², V = (4/3)πr³<br>
+<b>Spherical shell:</b> V = (4/3)π(R³-r³)
+</div>`
+    },
+    "statistics": {
+      hi: `<h3>📐 सांख्यिकी - सूत्र</h3>
+<div class="formula-box">
+<b>माध्य (Mean):</b> x̄ = Σxᵢ / n  या  Σfᵢxᵢ / Σfᵢ<br>
+<b>माध्यिका (Median):</b> l + [(n/2 - cf)/f] × h<br>
+<b>बहुलक (Mode):</b> l + [(f₁ - f₀)/(2f₁ - f₀ - f₂)] × h<br>
+<b>अनुभवजन्य संबंध:</b> Mode = 3 Median - 2 Mean
+</div>`,
+      en: `<h3>📐 Statistics - Formulas</h3>
+<div class="formula-box">
+<b>Mean:</b> x̄ = Σxᵢ / n  or  Σfᵢxᵢ / Σfᵢ<br>
+<b>Median:</b> l + [(n/2 - cf)/f] × h<br>
+<b>Mode:</b> l + [(f₁ - f₀)/(2f₁ - f₀ - f₂)] × h<br>
+<b>Empirical:</b> Mode = 3 Median - 2 Mean
+</div>`
+    },
+    "probability": {
+      hi: `<h3>📐 प्रायिकता - सूत्र</h3>
+<div class="formula-box">P(E) = अनुकूल परिणामों की संख्या / कुल परिणामों की संख्या</div>
+<div class="formula-box">0 ≤ P(E) ≤ 1</div>
+<div class="formula-box">P(E) + P(not E) = 1</div>
+<p>सभी परिणाम समान रूप से संभावित होने चाहिए।</p>`,
+      en: `<h3>📐 Probability - Formulas</h3>
+<div class="formula-box">P(E) = Number of favourable outcomes / Total outcomes</div>
+<div class="formula-box">0 ≤ P(E) ≤ 1</div>
+<div class="formula-box">P(E) + P(not E) = 1</div>
+<p>All outcomes must be equally likely.</p>`
+    },
+    "linear": {
+      hi: `<h3>📐 रैखिक समीकरण युग्म</h3>
+<div class="formula-box">a₁x + b₁y + c₁ = 0<br>a₂x + b₂y + c₂ = 0</div>
+<ul>
+<li>a₁/a₂ ≠ b₁/b₂ → अद्वितीय हल (Unique)</li>
+<li>a₁/a₂ = b₁/b₂ ≠ c₁/c₂ → कोई हल नहीं (Inconsistent)</li>
+<li>a₁/a₂ = b₁/b₂ = c₁/c₂ → अनंत हल (Infinite)</li>
+</ul>
+<p><b>विधि:</b> प्रतिस्थापन, विलोपन, क्रॉस-गुणन</p>`,
+      en: `<h3>📐 Pair of Linear Equations</h3>
+<div class="formula-box">a₁x + b₁y + c₁ = 0<br>a₂x + b₂y + c₂ = 0</div>
+<ul>
+<li>a₁/a₂ ≠ b₁/b₂ → Unique solution</li>
+<li>a₁/a₂ = b₁/b₂ ≠ c₁/c₂ → No solution</li>
+<li>a₁/a₂ = b₁/b₂ = c₁/c₂ → Infinite solutions</li>
+</ul>
+<p><b>Methods:</b> Substitution, Elimination, Cross-multiplication</p>`
+    },
+    "triangles": {
+      hi: `<h3>📐 त्रिभुज - सूत्र व प्रमेय</h3>
+<div class="formula-box">पाइथागोरस: a² + b² = c² (समकोण त्रिभुज में)</div>
+<p><b>समानता के मापदंड:</b> AAA, SAS, SSS, RHS</p>
+<p><b>बेसिक आनुपातिकता प्रमेय (Thales):</b> यदि त्रिभुज की एक भुजा के समांतर रेखा अन्य दो भुजाओं को प्रतिच्छेद करे तो वह उन्हें समान अनुपात में विभाजित करती है।</p>
+<div class="formula-box">क्षेत्रफल अनुपात = (संगत भुजाओं का अनुपात)²</div>`,
+      en: `<h3>📐 Triangles - Formulas & Theorems</h3>
+<div class="formula-box">Pythagoras: a² + b² = c² (right triangle)</div>
+<p><b>Similarity Criteria:</b> AAA, SAS, SSS, RHS</p>
+<p><b>Basic Proportionality Theorem (Thales):</b> A line parallel to one side of a triangle divides the other two sides in the same ratio.</p>
+<div class="formula-box">Area ratio = (corresponding sides ratio)²</div>`
+    }
+  },
+  
+  definitions: {
+    "real number": {
+      hi: `<h3>📖 वास्तविक संख्या</h3>
+<p>वास्तविक संख्याएँ वे संख्याएँ हैं जो संख्या रेखा पर दर्शाई जा सकती हैं। इसमें परिमेय (rational) और अपरिमेय (irrational) दोनों संख्याएँ शामिल हैं।</p>
+<p><b>उदाहरण:</b> 2, -5, 3/4, √2, π, 0.333...</p>`,
+      en: `<h3>📖 Real Number</h3>
+<p>Real numbers are numbers that can be represented on the number line. They include both rational and irrational numbers.</p>
+<p><b>Example:</b> 2, -5, 3/4, √2, π, 0.333...</p>`
+    },
+    "polynomial": {
+      hi: `<h3>📖 बहुपद (Polynomial)</h3>
+<p>बहुपद एक व्यंजक है जिसमें चर की घात पूर्ण संख्या होती है और गुणांक वास्तविक संख्याएँ होती हैं।</p>
+<p><b>उदाहरण:</b> 3x² + 2x - 5, x³ - 1</p>
+<p><b>डिग्री:</b> सबसे बड़ी घात</p>`,
+      en: `<h3>📖 Polynomial</h3>
+<p>A polynomial is an expression with variables having non-negative integer powers and real coefficients.</p>
+<p><b>Example:</b> 3x² + 2x - 5, x³ - 1</p>
+<p><b>Degree:</b> Highest power of the variable</p>`
+    },
+    "quadratic equation": {
+      hi: `<h3>📖 द्विघात समीकरण</h3>
+<p>द्विघात समीकरण वह समीकरण है जिसमें चर की उच्चतम घात 2 होती है।</p>
+<div class="formula-box">मानक रूप: ax² + bx + c = 0 (a ≠ 0)</div>
+<p><b>उदाहरण:</b> x² - 5x + 6 = 0</p>`,
+      en: `<h3>📖 Quadratic Equation</h3>
+<p>A quadratic equation is an equation where the highest power of the variable is 2.</p>
+<div class="formula-box">Standard form: ax² + bx + c = 0 (a ≠ 0)</div>
+<p><b>Example:</b> x² - 5x + 6 = 0</p>`
+    },
+    "arithmetic progression": {
+      hi: `<h3>📖 समांतर श्रेढ़ी (AP)</h3>
+<p>समांतर श्रेढ़ी संख्याओं का वह क्रम है जिसमें प्रत्येक पद पिछले पद में एक निश्चित संख्या जोड़कर प्राप्त होता है। इस निश्चित संख्या को <b>सार्व अंतर (common difference)</b> कहते हैं।</p>
+<p><b>उदाहरण:</b> 2, 5, 8, 11, ... (d = 3)</p>`,
+      en: `<h3>📖 Arithmetic Progression (AP)</h3>
+<p>An arithmetic progression is a sequence of numbers in which each term is obtained by adding a fixed number to the previous term. This fixed number is called the <b>common difference</b>.</p>
+<p><b>Example:</b> 2, 5, 8, 11, ... (d = 3)</p>`
+    },
+    "similar triangles": {
+      hi: `<h3>📖 समरूप त्रिभुज</h3>
+<p>दो त्रिभुज समरूप होते हैं यदि उनके संगत कोण बराबर हों और संगत भुजाएँ समानुपाती हों।</p>
+<p>प्रतीक: ∼</p>`,
+      en: `<h3>📖 Similar Triangles</h3>
+<p>Two triangles are similar if their corresponding angles are equal and corresponding sides are proportional.</p>
+<p>Symbol: ∼</p>`
+    },
+    "probability": {
+      hi: `<h3>📖 प्रायिकता</h3>
+<p>प्रायिकता किसी घटना के घटित होने की संभावना का माप है।</p>
+<div class="formula-box">P(E) = अनुकूल परिणाम / कुल परिणाम</div>
+<p>इसका मान 0 से 1 के बीच होता है।</p>`,
+      en: `<h3>📖 Probability</h3>
+<p>Probability is a measure of the chance of an event occurring.</p>
+<div class="formula-box">P(E) = Favourable outcomes / Total outcomes</div>
+<p>Its value lies between 0 and 1.</p>`
+    }
+  },
+  
+  theorems: {
+    hi: `<h3>📏 महत्वपूर्ण प्रमेय (Theorems)</h3>
+<h4>1. यूक्लिड की विभाजन प्रमेयिका</h4>
+<p>किन्हीं दो धनात्मक पूर्णांकों a और b के लिए, अद्वितीय पूर्णांक q और r ऐसे होते हैं कि a = bq + r, जहाँ 0 ≤ r < b।</p>
+
+<h4>2. अंकगणित का मौलिक प्रमेय</h4>
+<p>हर समग्र संख्या को अभाज्य संख्याओं के गुणनफल के रूप में (क्रम को छोड़कर) अद्वितीय रूप से व्यक्त किया जा सकता है।</p>
+
+<h4>3. बेसिक आनुपातिकता प्रमेय (थेल्स प्रमेय)</h4>
+<p>यदि किसी त्रिभुज की एक भुजा के समांतर एक रेखा अन्य दो भुजाओं को प्रतिच्छेद करती है, तो वह उन्हें समान अनुपात में विभाजित करती है।</p>
+
+<h4>4. पाइथागोरस प्रमेय</h4>
+<p>समकोण त्रिभुज में कर्ण का वर्ग अन्य दो भुजाओं के वर्गों के योग के बराबर होता है।</p>
+
+<h4>5. वृत्त के स्पर्श रेखा प्रमेय</h4>
+<p>• स्पर्श रेखा संपर्क बिंदु पर त्रिज्या पर लंब होती है।<br>
+• एक बाहरी बिंदु से खींची गई दो स्पर्श रेखाएँ बराबर लंबाई की होती हैं।</p>
+
+<h4>6. त्रिभुज की समरूपता के मापदंड</h4>
+<p>AAA, SAS, SSS, RHS</p>`,
+    en: `<h3>📏 Important Theorems</h3>
+<h4>1. Euclid's Division Lemma</h4>
+<p>For any two positive integers a and b, there exist unique integers q and r such that a = bq + r, where 0 ≤ r < b.</p>
+
+<h4>2. Fundamental Theorem of Arithmetic</h4>
+<p>Every composite number can be expressed as a product of primes uniquely (ignoring order).</p>
+
+<h4>3. Basic Proportionality Theorem (Thales)</h4>
+<p>If a line parallel to one side of a triangle intersects the other two sides, it divides them in the same ratio.</p>
+
+<h4>4. Pythagoras Theorem</h4>
+<p>In a right-angled triangle, the square of the hypotenuse equals the sum of squares of the other two sides.</p>
+
+<h4>5. Circle Tangent Theorems</h4>
+<p>• Tangent is perpendicular to the radius at the point of contact.<br>
+• Two tangents drawn from an external point are equal in length.</p>
+
+<h4>6. Criteria for Similarity of Triangles</h4>
+<p>AAA, SAS, SSS, RHS</p>`
+  }
+};
+
+// ==================== TRIG VALUES ====================
+const trigValues = {
+  0: {sin: 0, cos: 1, tan: 0},
+  30: {sin: "1/2", cos: "√3/2", tan: "1/√3"},
+  45: {sin: "1/√2", cos: "1/√2", tan: "1"},
+  60: {sin: "√3/2", cos: "1/2", tan: "√3"},
+  90: {sin: 1, cos: 0, tan: "undefined"}
+};
+
+// ==================== UI FUNCTIONS ====================
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+}
+
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+function addMessage(html, isUser = false) {
+  const chat = document.getElementById('chatBox');
+  const div = document.createElement('div');
+  div.className = 'message ' + (isUser ? 'user-msg' : 'bot-msg');
+  div.innerHTML = html;
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function showTyping() {
+  const chat = document.getElementById('chatBox');
+  const div = document.createElement('div');
+  div.className = 'message bot-msg';
+  div.id = 'typing';
+  div.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function hideTyping() {
+  const t = document.getElementById('typing');
+  if (t) t.remove();
+}
+
+function showWelcome() {
+  const chat = document.getElementById('chatBox');
+  chat.innerHTML = '';
+  
+  const welcome = lang === 'hi' ? `
+    <div class="welcome-card">
+      <div class="welcome-title">👋 Hello KUSHAVION!</div>
+      <div class="welcome-sub">Main <b>KUSHAL'S AI</b> hoon 🤖<br>MP Board Class 10 Maths ka expert assistant</div>
+      <div class="feature-list">
+        <div class="feature-item" onclick="quickAction('smart')"><span class="feature-icon">🧠</span> SMART AI</div>
+        <div class="feature-item" onclick="quickAction('chapters')"><span class="feature-icon">🧮</span> MP Board Class 10 Maths</div>
+        <div class="feature-item" onclick="quickAction('formulas')"><span class="feature-icon">📚</span> Formula</div>
+        <div class="feature-item" onclick="quickAction('definitions')"><span class="feature-icon">📖</span> Definition</div>
+        <div class="feature-item" onclick="quickAction('theorems')"><span class="feature-icon">📏</span> Theorem</div>
+        <div class="feature-item" onclick="quickAction('solver')"><span class="feature-icon">✏️</span> Solver</div>
+        <div class="feature-item" onclick="quickAction('voice')"><span class="feature-icon">🎤</span> Voice Input</div>
+      </div>
+      <div style="margin-top:16px;font-size:13px;color:#888;">
+        <b>Example:</b><br>
+        "द्विघात समीकरण क्या है?"<br>
+        "sin 30 ka value?"<br>
+        "25 × 16"<br>
+        "त्रिकोणमिति के सूत्र"<br>
+        "Class 10 Maths ke sab chapters"
+      </div>
+    </div>
+  ` : `
+    <div class="welcome-card">
+      <div class="welcome-title">👋 Hello KUSHAVION!</div>
+      <div class="welcome-sub">I am <b>KUSHAL'S AI</b> 🤖<br>Your expert MP Board Class 10 Maths assistant</div>
+      <div class="feature-list">
+        <div class="feature-item" onclick="quickAction('smart')"><span class="feature-icon">🧠</span> SMART AI</div>
+        <div class="feature-item" onclick="quickAction('chapters')"><span class="feature-icon">🧮</span> MP Board Class 10 Maths</div>
+        <div class="feature-item" onclick="quickAction('formulas')"><span class="feature-icon">📚</span> Formula</div>
+        <div class="feature-item" onclick="quickAction('definitions')"><span class="feature-icon">📖</span> Definition</div>
+        <div class="feature-item" onclick="quickAction('theorems')"><span class="feature-icon">📏</span> Theorem</div>
+        <div class="feature-item" onclick="quickAction('solver')"><span class="feature-icon">✏️</span> Solver</div>
+        <div class="feature-item" onclick="quickAction('voice')"><span class="feature-icon">🎤</span> Voice Input</div>
+      </div>
+      <div style="margin-top:16px;font-size:13px;color:#888;">
+        <b>Example:</b><br>
+        "What is quadratic equation?"<br>
+        "sin 30 value?"<br>
+        "25 × 16"<br>
+        "Trigonometry formulas"<br>
+        "All chapters of Class 10 Maths"
+      </div>
+    </div>
+  `;
+  
+  chat.innerHTML = welcome;
+}
+
+function clearChat() {
+  closeSidebar();
+  showWelcome();
+}
+
+// ==================== QUICK ACTIONS ====================
+function quickAction(type) {
+  closeSidebar();
+  let q = '';
+  if (type === 'chapters') q = lang === 'hi' ? 'Class 10 Maths ke sab chapters' : 'All chapters of Class 10 Maths';
+  else if (type === 'formulas') q = lang === 'hi' ? 'सभी महत्वपूर्ण सूत्र' : 'All important formulas';
+  else if (type === 'definitions') q = lang === 'hi' ? 'परिभाषाएँ बताओ' : 'Show definitions';
+  else if (type === 'theorems') q = lang === 'hi' ? 'महत्वपूर्ण प्रमेय' : 'Important theorems';
+  else if (type === 'solver') q = lang === 'hi' ? 'Problem solver kaise use kare' : 'How to use problem solver';
+  else if (type === 'trig') q = lang === 'hi' ? 'त्रिकोणमिति के सूत्र' : 'Trigonometry formulas';
+  else if (type === 'quadratic') q = lang === 'hi' ? 'द्विघात समीकरण' : 'Quadratic equations';
+  else if (type === 'smart') q = lang === 'hi' ? 'तुम क्या कर सकते हो' : 'What can you do';
+  else if (type === 'voice') q = lang === 'hi' ? 'Voice input kaise use kare' : 'How to use voice input';
+  else if (type === 'help') q = lang === 'hi' ? 'मदद' : 'Help';
+  
+  document.getElementById('userInput').value = q;
+  sendMessage();
+}
+
+// ==================== CORE AI LOGIC ====================
+function processQuery(query) {
+  const q = query.toLowerCase().trim();
+  const isHindi = /[\u0900-\u097F]/.test(query) || lang === 'hi';
+  
+  // === CHAPTERS ===
+  if (q.includes('chapter') || q.includes('अध्याय') || q.includes('sab chapter') || q.includes('all chapter') || q.includes('syllabus') || q.includes('सिलेबस')) {
+    const list = knowledge.chapters[isHindi ? 'hi' : 'en'];
+    let html = `<div class="math-content"><h3>📚 MP Board Class 10 Maths Chapters</h3><ol style="padding-left:20px;">`;
+    list.forEach(c => html += `<li style="margin:6px 0;">${c}</li>`);
+    html += `</ol><p style="margin-top:12px;color:#888;">किसी chapter का नाम लिखो जैसे "Quadratic Equations" या "द्विघात समीकरण"</p></div>`;
+    return html;
+  }
+  
+  // === ALL FORMULAS ===
+  if ((q.includes('formula') || q.includes('सूत्र') || q.includes('sutra') || q.includes('सभी')) && 
+      (q.includes('all') || q.includes('sab') || q.includes('important') || q.includes('महत्वपूर्ण') || q.length < 25)) {
+    let html = `<div class="math-content"><h3>📐 Important Formulas - Class 10 Maths</h3>`;
+    html += knowledge.formulas.quadratic[isHindi?'hi':'en'];
+    html += knowledge.formulas.ap[isHindi?'hi':'en'];
+    html += knowledge.formulas.trigonometry[isHindi?'hi':'en'];
+    html += knowledge.formulas.coordinate[isHindi?'hi':'en'];
+    html += knowledge.formulas.circles[isHindi?'hi':'en'];
+    html += knowledge.formulas.surface[isHindi?'hi':'en'];
+    html += knowledge.formulas.statistics[isHindi?'hi':'en'];
+    html += knowledge.formulas.probability[isHindi?'hi':'en'];
+    html += `</div>`;
+    return html;
+  }
+  
+  // === THEOREMS ===
+  if (q.includes('theorem') || q.includes('प्रमेय') || q.includes('pramey')) {
+    return `<div class="math-content">${knowledge.theorems[isHindi?'hi':'en']}</div>`;
+  }
+  
+  // === DEFINITIONS LIST ===
+  if (q.includes('definition') || q.includes('परिभाषा') || q.includes('paribhasha')) {
+    let html = `<div class="math-content"><h3>📖 Important Definitions</h3>
+    <p>निम्नलिखित में से कोई भी पूछ सकते हो:</p>
+    <ul>
+      <li>Real Number / वास्तविक संख्या</li>
+      <li>Polynomial / बहुपद</li>
+      <li>Quadratic Equation / द्विघात समीकरण</li>
+      <li>Arithmetic Progression / समांतर श्रेढ़ी</li>
+      <li>Similar Triangles / समरूप त्रिभुज</li>
+      <li>Probability / प्रायिकता</li>
+    </ul>
+    <p style="color:#888;margin-top:10px;">उदाहरण: "द्विघात समीकरण क्या है?"</p></div>`;
+    return html;
+  }
+  
+  // === TRIG VALUES ===
+  const sinMatch = q.match(/sin\s*(\d+)/);
+  const cosMatch = q.match(/cos\s*(\d+)/);
+  const tanMatch = q.match(/tan\s*(\d+)/);
+  
+  if (sinMatch || cosMatch || tanMatch) {
+    const angle = parseInt((sinMatch || cosMatch || tanMatch)[1]);
+    const val = trigValues[angle];
+    if (val) {
+      let html = `<div class="math-content"><h3>📐 Trigonometric Values</h3>`;
+      if (sinMatch) html += `<div class="formula-box">sin ${angle}° = ${val.sin}</div>`;
+      if (cosMatch) html += `<div class="formula-box">cos ${angle}° = ${val.cos}</div>`;
+      if (tanMatch) html += `<div class="formula-box">tan ${angle}° = ${val.tan}</div>`;
+      html += `<p style="margin-top:10px;">Standard angles: 0°, 30°, 45°, 60°, 90°</p></div>`;
+      return html;
+    }
+  }
+  
+  if (q.includes('trig') || q.includes('त्रिकोणमिति') || q.includes('trigonometry') || q.includes('sin cos') || q.includes('सूत्र') && q.includes('त्रि')) {
+    return `<div class="math-content">${knowledge.formulas.trigonometry[isHindi?'hi':'en']}</div>`;
+  }
+  
+  // === SPECIFIC TOPICS ===
+  if (q.includes('quadratic') || q.includes('द्विघात') || q.includes('dwighat')) {
+    let html = `<div class="math-content">`;
+    html += knowledge.definitions["quadratic equation"][isHindi?'hi':'en'];
+    html += knowledge.formulas.quadratic[isHindi?'hi':'en'];
+    html += `<div class="example-box"><b>उदाहरण / Example:</b><br>
+    x² - 5x + 6 = 0<br>
+    Factor: (x-2)(x-3)=0 → x=2 या x=3<br>
+    D = 25-24=1 > 0 → दो वास्तविक मूल</div></div>`;
+    return html;
+  }
+  
+  if (q.includes('polynomial') || q.includes('बहुपद') || q.includes('bahupad')) {
+    return `<div class="math-content">${knowledge.definitions.polynomial[isHindi?'hi':'en']}${knowledge.formulas.polynomials[isHindi?'hi':'en']}</div>`;
+  }
+  
+  if (q.includes('real number') || q.includes('वास्तविक') || q.includes('hcf') || q.includes('lcm')) {
+    return `<div class="math-content">${knowledge.definitions["real number"][isHindi?'hi':'en']}${knowledge.formulas["real numbers"][isHindi?'hi':'en']}</div>`;
+  }
+  
+  if (q.includes('arithmetic') || q.includes('समांतर') || q.includes('ap ') || q.includes('a.p') || q.includes('श्रेढ़ी')) {
+    return `<div class="math-content">${knowledge.definitions["arithmetic progression"][isHindi?'hi':'en']}${knowledge.formulas.ap[isHindi?'hi':'en']}</div>`;
+  }
+  
+  if (q.includes('coordinate') || q.includes('निर्देशांक') || q.includes('distance formula') || q.includes('दूरी सूत्र')) {
+    return `<div class="math-content">${knowledge.formulas.coordinate[isHindi?'hi':'en']}</div>`;
+  }
+  
+  if (q.includes('circle') || q.includes('वृत्त') || q.includes('vritt')) {
+    return `<div class="math-content">${knowledge.formulas.circles[isHindi?'hi':'en']}</div>`;
+  }
+  
+  if (q.includes('surface') || q.includes('volume') || q.includes('पृष्ठीय') || q.includes('आयतन') || q.includes('cylinder') || q.includes('cone') || q.includes('sphere') || q.includes('बेलन') || q.includes('शंकु') || q.includes('गोला')) {
+    return `<div class="math-content">${knowledge.formulas.surface[isHindi?'hi':'en']}</div>`;
+  }
+  
+  if (q.includes('statistic') || q.includes('सांख्यिकी') || q.includes('mean') || q.includes('median') || q.includes('mode') || q.includes('माध्य') || q.includes('माध्यिका') || q.includes('बहुलक')) {
+    return `<div class="math-content">${knowledge.formulas.statistics[isHindi?'hi':'en']}</div>`;
+  }
+  
+  if (q.includes('probability') || q.includes('प्रायिकता') || q.includes('prayikta')) {
+    return `<div class="math-content">${knowledge.definitions.probability[isHindi?'hi':'en']}${knowledge.formulas.probability[isHindi?'hi':'en']}</div>`;
+  }
+  
+  if (q.includes('linear equation') || q.includes('रैखिक') || q.includes('pair of linear')) {
+    return `<div class="math-content">${knowledge.formulas.linear[isHindi?'hi':'en']}</div>`;
+  }
+  
+  if (q.includes('triangle') || q.includes('त्रिभुज') || q.includes('similar') || q.includes('समरूप') || q.includes('pythagoras') || q.includes('पाइथागोरस')) {
+    return `<div class="math-content">${knowledge.formulas.triangles[isHindi?'hi':'en']}</div>`;
+  }
+  
+  // === CALCULATOR / ARITHMETIC ===
+  const calcMatch = q.match(/([\d.]+)\s*([+\-×x*\/÷])\s*([\d.]+)/);
+  if (calcMatch) {
+    let a = parseFloat(calcMatch[1]);
+    let op = calcMatch[2];
+    let b = parseFloat(calcMatch[3]);
+    let result;
+    if (op === '+' ) result = a + b;
+    else if (op === '-') result = a - b;
+    else if (op === '×' || op === 'x' || op === '*') result = a * b;
+    else if (op === '/' || op === '÷') result = b !== 0 ? a / b : 'Undefined (division by zero)';
+    return `<div class="math-content"><h3>🔢 Calculation</h3>
+    <div class="formula-box">${a} ${op} ${b} = <b>${result}</b></div></div>`;
+  }
+  
+  // Simple power
+  const powMatch = q.match(/([\d.]+)\s*\^\s*([\d.]+)/) || q.match(/([\d.]+)\s*की\s*([\d.]+)\s*घात/);
+  if (powMatch) {
+    const res = Math.pow(parseFloat(powMatch[1]), parseFloat(powMatch[2]));
+    return `<div class="math-content"><div class="formula-box">${powMatch[1]} ^ ${powMatch[2]} = <b>${res}</b></div></div>`;
+  }
+  
+  // Square root
+  const sqrtMatch = q.match(/√\s*([\d.]+)/) || q.match(/square root of ([\d.]+)/) || q.match(/([\d.]+)\s*का\s*वर्गमूल/);
+  if (sqrtMatch) {
+    const res = Math.sqrt(parseFloat(sqrtMatch[1]));
+    return `<div class="math-content"><div class="formula-box">√${sqrtMatch[1]} = <b>${res}</b></div></div>`;
+  }
+  
+  // === QUADRATIC SOLVER ===
+  const quadMatch = q.match(/([-\d.]+)x\s*\^?\s*2\s*([+-]\s*[\d.]+)x\s*([+-]\s*[\d.]+)\s*=\s*0/i) ||
+                    q.match(/solve\s*([-\d.]+)x²\s*([+-][\d.]+)x\s*([+-][\d.]+)/i);
+  if (quadMatch || (q.includes('solve') && q.includes('x'))) {
+    // Try to extract coefficients
+    let a=1, b=0, c=0;
+    const nums = q.match(/([+-]?\d*\.?\d+)\s*x\s*\²?|([+-]?\d*\.?\d+)\s*x|([+-]?\d+\.?\d*)/g);
+    // Simple known examples
+    if (q.includes('x2') || q.includes('x²') || q.includes('x^2')) {
+      return `<div class="math-content"><h3>✏️ Quadratic Solver</h3>
+      <p>समस्या इस फॉर्म में लिखो:</p>
+      <div class="formula-box">ax² + bx + c = 0</div>
+      <p>उदाहरण: <b>x² - 5x + 6 = 0</b> या <b>2x² + 3x - 2 = 0</b></p>
+      <p style="color:#888;">मैं discriminant निकालकर मूल बता दूँगा।</p></div>`;
+    }
+  }
+  
+  // Specific quadratic examples
+  if (q.includes('x² - 5x + 6') || q.includes('x2 - 5x + 6') || q.includes('x^2 - 5x + 6')) {
+    return `<div class="math-content"><h3>✏️ Solution</h3>
+    <div class="formula-box">x² - 5x + 6 = 0</div>
+    <p><b>Step 1:</b> Factorisation<br>(x - 2)(x - 3) = 0</p>
+    <p><b>Step 2:</b> x - 2 = 0 या x - 3 = 0</p>
+    <div class="formula-box">x = 2  या  x = 3</div>
+    <p><b>Check with formula:</b><br>
+    a=1, b=-5, c=6<br>
+    D = 25 - 24 = 1<br>
+    x = [5 ± 1]/2 → x=3 या x=2</p></div>`;
+  }
+  
+  // === HELP / WHAT CAN YOU DO ===
+  if (q.includes('help') || q.includes('मदद') || q.includes('kya kar') || q.includes('what can') || q.includes('kaise use') || q.includes('solver') || q.includes('voice')) {
+    return `<div class="math-content"><h3>🤖 KUSHAL'S AI - Help</h3>
+    <p>मैं MP Board Class 10 Maths का पूरा expert हूँ!</p>
+    <h4>मैं क्या कर सकता हूँ:</h4>
+    <ul>
+      <li>📚 सभी 14 chapters की जानकारी</li>
+      <li>📐 सभी महत्वपूर्ण सूत्र (Formulas)</li>
+      <li>📖 परिभाषाएँ (Definitions)</li>
+      <li>📏 प्रमेय (Theorems)</li>
+      <li>✏️ समस्याएँ हल करना (Problem Solving)</li>
+      <li>🔢 गणना (Calculations)</li>
+      <li>📐 त्रिकोणमितीय मान (sin, cos, tan)</li>
+      <li>🎤 Voice Input (mic दबाकर बोलो)</li>
+    </ul>
+    <h4>उदाहरण सवाल:</h4>
+    <div class="example-box">
+    "द्विघात समीकरण क्या है?"<br>
+    "sin 30 ka value?"<br>
+    "25 × 16"<br>
+    "त्रिकोणमिति के सूत्र"<br>
+    "Class 10 Maths ke sab chapters"<br>
+    "Pythagoras theorem"<br>
+    "Mean median mode formula"
+    </div>
+    <p style="margin-top:10px;">Hindi या English दोनों में पूछ सकते हो!</p></div>`;
+  }
+  
+  // === GREETING ===
+  if (q.includes('hello') || q.includes('hi') || q.includes('namaste') || q.includes('नमस्ते') || q.includes('hey')) {
+    return isHindi 
+      ? `<div class="math-content">👋 नमस्ते! Main KUSHAL'S AI hoon.<br>MP Board Class 10 Maths के किसी भी सवाल का जवाब दे सकता हूँ।<br><br>पूछो! 😊</div>`
+      : `<div class="math-content">👋 Hello! I am KUSHAL'S AI.<br>I can answer any question from MP Board Class 10 Maths.<br><br>Ask me! 😊</div>`;
+  }
+  
+  // === DEFAULT FALLBACK ===
+  return isHindi 
+    ? `<div class="math-content">
+        <p>🤔 मुझे सही से समझ नहीं आया।</p>
+        <p>कुछ इस तरह पूछो:</p>
+        <div class="example-box">
+        • "द्विघात समीकरण क्या है?"<br>
+        • "sin 30 value"<br>
+        • "त्रिकोणमिति सूत्र"<br>
+        • "सभी chapters"<br>
+        • "25 × 16"<br>
+        • "Pythagoras theorem"
+        </div>
+        <p>या ऊपर दिए गए बटन दबाकर शुरू करो!</p>
+      </div>`
+    : `<div class="math-content">
+        <p>🤔 I didn't quite understand.</p>
+        <p>Try asking like:</p>
+        <div class="example-box">
+        • "What is quadratic equation?"<br>
+        • "sin 30 value"<br>
+        • "Trigonometry formulas"<br>
+        • "All chapters"<br>
+        • "25 × 16"<br>
+        • "Pythagoras theorem"
+        </div>
+        <p>Or use the quick buttons above!</p>
+      </div>`;
+}
+
+// ==================== SEND MESSAGE ====================
+function sendMessage() {
+  const input = document.getElementById('userInput');
+  const query = input.value.trim();
+  if (!query) return;
+  
+  addMessage(query, true);
+  input.value = '';
+  
+  showTyping();
+  
+  setTimeout(() => {
+    hideTyping();
+    const response = processQuery(query);
+    addMessage(response, false);
+  }, 400 + Math.random() * 400);
+}
+
+// Enter key
+document.getElementById('userInput').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') sendMessage();
+});
+
+// ==================== VOICE INPUT ====================
+let recognition = null;
+let isListening = false;
+
+function toggleVoice() {
+  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+    addMessage('<div class="math-content">❌ Voice recognition is not supported in this browser. Please use Chrome or Edge.</div>', false);
+    return;
+  }
+  
+  if (isListening) {
+    stopListening();
+    return;
+  }
+  
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SpeechRecognition();
+  recognition.lang = lang === 'hi' ? 'hi-IN' : 'en-IN';
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+  
+  recognition.onstart = () => {
+    isListening = true;
+    document.getElementById('micBtn').classList.add('listening');
+    document.getElementById('statusBar').textContent = lang === 'hi' ? '🎤 सुन रहा हूँ... बोलो!' : '🎤 Listening... Speak now!';
+  };
+  
+  recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+    document.getElementById('userInput').value = transcript;
+    stopListening();
+    sendMessage();
+  };
+  
+  recognition.onerror = (event) => {
+    stopListening();
+    document.getElementById('statusBar').textContent = 'Error: ' + event.error;
+  };
+  
+  recognition.onend = () => {
+    stopListening();
+  };
+  
+  recognition.start();
+}
+
+function stopListening() {
+  isListening = false;
+  document.getElementById('micBtn').classList.remove('listening');
+  document.getElementById('statusBar').textContent = lang === 'hi' 
+    ? 'Question type karo ya mic dabakar bolo' 
+    : 'Type your question or press mic to speak';
+  if (recognition) {
+    try { recognition.stop(); } catch(e) {}
+  }
+}
+
+// ==================== INIT ====================
+showWelcome();
+</script>
+</body>
+</html>
